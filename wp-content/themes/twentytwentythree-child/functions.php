@@ -1,6 +1,7 @@
 <?php
 function register_custom_menus()
 {
+    // test
     register_nav_menus(
         array(
             'logged-in-menu' => __('Logged-in Menu', 'twentytwentythree-child'),
