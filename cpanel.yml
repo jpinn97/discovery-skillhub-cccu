@@ -1,5 +1,0 @@
----
-deploy:
-  tasks:
-    - export DEPLOYPATH=/home/rhrrist/public_html
-    - /bin/cp -R /home/rhrrist/repositories/discovery-skillhub-cccu/.git $DEPLOYPATH/
