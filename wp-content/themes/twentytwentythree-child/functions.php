@@ -27,7 +27,7 @@ function logged_in_out_menu_shortcode($atts, $content = null)
 add_shortcode('logged_in_out_menu', 'logged_in_out_menu_shortcode');
 
 function um_profile_points()
-{   
+{
     $user_id = get_current_user_id();
     // Get um_points for current user
     $um_points = get_user_meta($user_id, 'um_profile_points', true);
@@ -109,4 +109,3 @@ function first_time_register()
     check_profile();
 }
 add_action('um_user_register', 'first_time_register', 10, 1);
-?>
