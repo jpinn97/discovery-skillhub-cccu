@@ -110,3 +110,46 @@ function first_time_register()
     check_profile();
 }
 add_action('um_user_register', 'first_time_register', 10, 1);
+
+
+function my_tenant_callback()
+{
+    $approved_tenants = get_users(array(
+        'role' => 'um_tenant',
+        'meta_query' => array(
+            array(
+                'key' => 'user_status',
+                'value' => '0',
+                'compare' => '=',
+            ),
+        ),
+    ));
+
+    $options = array();
+
+    foreach ($approved_tenants as $tenant) {
+        $options[$tenant->ID] = $tenant->display_name;
+    }
+
+    return $options;
+}
+function my_custom_um_register_fields($fields)
+{
+
+    $fields['approved_tenant'] = array(
+        'title' => 'Approved Tenants',
+        'metakey' => 'approved_tenants',
+        'type' => 'select',
+        'label' => 'Approved Tenants',
+        'required' => 1,
+        'public' => 1,
+        'editable' => 1,
+        'icon' => 'um-faicon-users',
+        'order' => 999,
+        'options' => my_tenant_callback(),
+    );
+
+    return $fields;
+}
+
+add_filter('um_register_fields', 'my_custom_um_register_fields', 10, 1);
