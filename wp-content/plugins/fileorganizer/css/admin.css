@@ -1,0 +1,47 @@
+/*Toolbar*/
+.elfinder-toolbar .ui-widget-content {
+	border-color: #c9c9c9 !important;
+}
+
+/*Context Menu*/
+.elfinder .elfinder-contextmenu-item {
+	padding: 4px 32px !important;
+}
+.elfinder-contextmenu-item .elfinder-contextsubmenu-item {
+	padding: 4px 50px 4px 10px !important;
+}
+.elfinder .elfinder-contextmenu, .elfinder .elfinder-contextmenu-sub {
+	border: 1px solid #e1e1e1 !important;
+	box-shadow: 0px 0px 9px -5px #7d7d7d !important;
+}
+
+.elfinder .elfinder-contextmenu-separator {
+	border-top: 1px solid #d5d5d5 !important;
+	margin: 4px 6px !important;
+}
+
+/*Table*/
+.elfinder-table-header-sticky table {
+	border: none !important;
+}
+.elfinder .elfinder-cwd table thead td.ui-state-active{
+    color: #fff;
+}
+
+/*Properties Dialog*/
+.elfinder-info-title {
+	padding: 4px 0px 4px 0 !important;
+}
+.std42-dialog, .std42-dialog .ui-widget-content {
+	background-color: #fbfbfb !important;
+}
+.elfinder-info-tb {
+	border-top: 1px solid #d5d5d5 !important;
+    margin: 14px 0;
+}
+.elfinder-info-tb td {
+	padding: 4px 0 !important;
+}
+.elfinder-ltr .elfinder-info-tb tr td:first-child{
+	text-align: left !important;
+}

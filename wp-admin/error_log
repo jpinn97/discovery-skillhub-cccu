@@ -1,0 +1,174 @@
+[14-Apr-2023 16:45:30 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 48
+[14-Apr-2023 22:23:25 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:23:25 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:23:25 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:28:18 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:28:18 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:28:18 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:28:42 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:28:42 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:28:42 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:28:54 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:28:54 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:28:54 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:30:57 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:30:57 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:30:57 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:33:39 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:33:39 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:33:39 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:33:39 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:33:39 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:33:39 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:34:56 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:34:56 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:34:56 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:54:33 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:33 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:33 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:54:40 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:40 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:40 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:54:42 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:42 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:42 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:54:45 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:45 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:54:45 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:55:00 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:55:00 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:55:00 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:55:26 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:55:26 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:55:26 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 22:56:18 UTC] PHP Warning:  include_once(/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php): failed to open stream: No such file or directory in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:56:18 UTC] PHP Warning:  include_once(): Failed opening '/home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/social_apps/WordPress.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 117
+[14-Apr-2023 22:56:18 UTC] PHP Fatal error:  Uncaught Error: Class 'mo_WordPress' not found in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php:119
+Stack trace:
+#0 /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/miniorange_openid_sso_settings_page.php(232): mo_openid_show_apps()
+#1 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(308): mo_register_openid('')
+#2 /home/rhrrist/public_html/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/rhrrist/public_html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/rhrrist/public_html/wp-admin/admin.php(259): do_action('miniorange-soci...')
+#5 {main}
+  thrown in /home/rhrrist/public_html/wp-content/plugins/miniorange-login-openid/view/config_apps/mo_openid_config_apps.php on line 119
+[14-Apr-2023 23:35:22 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 30
+[14-Apr-2023 23:35:47 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 30
+[14-Apr-2023 23:36:35 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 30
+[15-Apr-2023 00:29:01 UTC] PHP Fatal error:  Cannot redeclare um_profile_header() (previously declared in /home/rhrrist/public_html/wp-content/plugins/ultimate-member/includes/core/um-actions-profile.php:1021) in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 29
+[15-Apr-2023 00:29:44 UTC] PHP Fatal error:  Cannot redeclare um_profile_header() (previously declared in /home/rhrrist/public_html/wp-content/plugins/ultimate-member/includes/core/um-actions-profile.php:1021) in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 29
+[15-Apr-2023 00:29:49 UTC] PHP Fatal error:  Cannot redeclare um_profile_header() (previously declared in /home/rhrrist/public_html/wp-content/plugins/ultimate-member/includes/core/um-actions-profile.php:1021) in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 29
+[15-Apr-2023 00:29:59 UTC] PHP Fatal error:  Cannot redeclare um_profile_header() (previously declared in /home/rhrrist/public_html/wp-content/plugins/ultimate-member/includes/core/um-actions-profile.php:1021) in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 29
+[15-Apr-2023 00:31:02 UTC] PHP Fatal error:  Cannot redeclare um_profile() (previously declared in /home/rhrrist/public_html/wp-content/plugins/ultimate-member/includes/um-short-functions.php:1811) in /home/rhrrist/public_html/wp-content/themes/twentytwentythree-child/functions.php on line 29
