@@ -3,5 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/rhrrist/public_html
     - /bin/cp -R $DEPLOYPATH{,.bak}/
-    - /bin/cp -R /home/rhrrist/repositories/discovery-skillhub-cccu
+    - /bin/cp -R /home/rhrrist/repositories/discovery-skillhub-cccu/* $DEPLOYPATH
     - /bin/rm -rf $DEPLOYPATH.bak/
