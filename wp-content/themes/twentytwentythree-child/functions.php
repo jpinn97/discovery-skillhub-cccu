@@ -112,44 +112,23 @@ function first_time_register()
 add_action('um_user_register', 'first_time_register', 10, 1);
 
 
-function my_tenant_callback()
+function approved_tenants_callback()
 {
-    $approved_tenants = get_users(array(
+    // Retrieve a list of users with the "um_tenant" role
+    $users = get_users(array(
         'role' => 'um_tenant',
-        'meta_query' => array(
-            array(
-                'key' => 'user_status',
-                'value' => '0',
-                'compare' => '=',
-            ),
-        ),
     ));
 
-    $options = array();
-
-    foreach ($approved_tenants as $tenant) {
-        $options[$tenant->ID] = $tenant->display_name;
+    // Loop through the list of users and retrieve the "user_status" value for each user
+    $approved_tenants = array();
+    foreach ($users as $user) {
+        $user_id = $user->ID;
+        $user_status = get_user_meta($user_id, 'user_status', true);
+        if ($user_status === '0') {
+            // The user is an approved tenant, so store their ID in the array
+            $approved_tenants[] = $user_id;
+        }
     }
 
-    return $options;
+    return $approved_tenants;
 }
-function my_custom_um_register_fields($fields)
-{
-
-    $fields['approved_tenant'] = array(
-        'title' => 'Approved Tenants',
-        'metakey' => 'approved_tenants',
-        'type' => 'select',
-        'label' => 'Approved Tenants',
-        'required' => 1,
-        'public' => 1,
-        'editable' => 1,
-        'icon' => 'um-faicon-users',
-        'order' => 999,
-        'options' => my_tenant_callback(),
-    );
-
-    return $fields;
-}
-
-add_filter('um_register_fields', 'my_custom_um_register_fields', 10, 1);
