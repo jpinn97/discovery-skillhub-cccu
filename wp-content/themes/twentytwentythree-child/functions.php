@@ -111,24 +111,24 @@ function first_time_register()
 }
 add_action('um_user_register', 'first_time_register', 10, 1);
 
+function approved_tenant_list() {
+    global $wpdb;
 
-function approved_tenants_callback()
-{
-    // Retrieve a list of users with the "um_tenant" role
-    $users = get_users(array(
-        'role' => 'um_tenant',
-    ));
+    $query = "SELECT u.user_login
+              FROM wpeb_users AS u
+              INNER JOIN wpeb_usermeta AS um
+              ON u.ID = um.user_id
+              WHERE um.meta_key = 'wpeb_capabilities'
+              AND um.meta_value LIKE '%um_tenant%'
+              AND (SELECT meta_value FROM wpeb_usermeta WHERE user_id = u.ID AND meta_key = 'account_status') = 'approved'";
 
-    // Loop through the list of users and retrieve the "user_status" value for each user
-    $approved_tenants = array();
-    foreach ($users as $user) {
-        $user_id = $user->ID;
-        $user_status = get_user_meta($user_id, 'user_status', true);
-        if ($user_status === '0') {
-            // The user is an approved tenant, so store their ID in the array
-            $approved_tenants[] = $user_id;
-        }
+    $results = $wpdb->get_results($query);
+
+    $approved_users = array();
+
+    foreach ($results as $result) {
+        $approved_users[] = $result->user_login;
     }
 
-    return $approved_tenants;
+    return $approved_users;
 }
