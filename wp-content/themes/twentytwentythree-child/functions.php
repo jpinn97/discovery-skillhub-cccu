@@ -111,7 +111,8 @@ function first_time_register()
 }
 add_action('um_user_register', 'first_time_register', 10, 1);
 
-function approved_tenant_list() {
+function approved_tenant_list()
+{
     global $wpdb;
 
     $query = "SELECT u.user_login
