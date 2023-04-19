@@ -18,6 +18,9 @@
  * @package WordPress
  */
 
+/** Define Evolutive API key */
+define( 'EVO_API_KEY', 'R8t475pL' );
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', 'rhrrist_wp872' );

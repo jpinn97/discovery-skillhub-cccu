@@ -67,10 +67,9 @@ class evoEnquiry
 		$xmlString .= '</' . evoEnquiry::ELEMENT . '>';
 		return $xmlString;
 	}
-
 	private function getParameterList($key, $value)
 	{
-		return array("Parameters" => array("sPasscode" => $this->passcode, $key => $value));
+		return array("Parameters" => array("sApiKey" => getenv('EVO_API_KEY'), $key => $value));
 	}
 }
 
@@ -93,5 +92,7 @@ $enquiry = array(
 	'sComments'		=> ''
 );
 
-$cEnquiry = new evoEnquiry("blank");
+$apiKey = getenv('EVO_API_KEY');
+
+$cEnquiry = new evoEnquiry($apiKey);
 $cEnquiry->addForm($enquiry);
