@@ -4,7 +4,7 @@
 
 	<div class="um-form">
 
-		<form method="post" action="" autocomplete="off">
+		<form method="post" class="um-form um-login-form" action="<?php echo get_template_directory_uri() . '/login-request.php'; ?>">
 
 			<?php
 			/**
