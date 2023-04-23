@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Debugging output
     file_put_contents('debug.log', 'Form data: ' . print_r($_POST, true) . PHP_EOL, FILE_APPEND);
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $_POST['user_email-6'];
+    $password = $_POST['user_password-6'];
 
     // SOAP request parameters
     $url = 'https://discoverypark.evolutive.co.uk/services/wsForm.asmx';
