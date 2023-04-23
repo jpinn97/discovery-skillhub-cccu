@@ -1,7 +1,13 @@
 <?php
-session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+// Debugging output
+file_put_contents('debug.log', 'Script started' . PHP_EOL, FILE_APPEND);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Debugging output
+    file_put_contents('debug.log', 'Form data: ' . print_r($_POST, true) . PHP_EOL, FILE_APPEND);
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 

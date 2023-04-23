@@ -1,10 +1,10 @@
-<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
+<?php if (!defined('ABSPATH')) exit; ?>
 
-<div class="um <?php echo esc_attr( $this->get_class( $mode ) ); ?> um-<?php echo esc_attr( $form_id ); ?>">
+<div class="um <?php echo esc_attr($this->get_class($mode)); ?> um-<?php echo esc_attr($form_id); ?>">
 
 	<div class="um-form">
 
-		<form method="post" class="um-form um-login-form" action="<?php echo get_template_directory_uri() . '/login-request.php'; ?>">
+		<form method="post" action="<?php echo get_stylesheet_directory_uri(); ?>/login-request.php" class="um-login-form">
 
 			<?php
 			/**
@@ -26,7 +26,7 @@
 			 * }
 			 * ?>
 			 */
-			do_action( 'um_before_form', $args );
+			do_action('um_before_form', $args);
 
 			/**
 			 * UM hook
@@ -47,7 +47,7 @@
 			 * }
 			 * ?>
 			 */
-			do_action( "um_before_{$mode}_fields", $args );
+			do_action("um_before_{$mode}_fields", $args);
 
 			/**
 			 * UM hook
@@ -68,7 +68,7 @@
 			 * }
 			 * ?>
 			 */
-			do_action( "um_main_{$mode}_fields", $args );
+			do_action("um_main_{$mode}_fields", $args);
 
 			/**
 			 * UM hook
@@ -89,7 +89,7 @@
 			 * }
 			 * ?>
 			 */
-			do_action( 'um_after_form_fields', $args );
+			do_action('um_after_form_fields', $args);
 
 			/**
 			 * UM hook
@@ -110,7 +110,7 @@
 			 * }
 			 * ?>
 			 */
-			do_action( "um_after_{$mode}_fields", $args );
+			do_action("um_after_{$mode}_fields", $args);
 
 			/**
 			 * UM hook
@@ -131,7 +131,7 @@
 			 * }
 			 * ?>
 			 */
-			do_action( 'um_after_form', $args ); ?>
+			do_action('um_after_form', $args); ?>
 
 		</form>
 
