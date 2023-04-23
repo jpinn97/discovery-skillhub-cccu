@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__) . '/../../../wp-load.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['username-6'];
+    $email = $_POST['user_email-6'];
     $password = $_POST['user_password-6'];
     try {
         // SOAP request parameters
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passcode = EVO_API_KEY;
 
         // SOAP request body
-        $requestBody = <<<'XML'
+        $requestBody = <<<XML
         <?xml version="1.0" encoding="utf-8"?>
         <soap12:Envelope xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
             <soap12:Body>
@@ -43,6 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Execute the cURL request
         $response = curl_exec($ch);
 
+        // Log the SOAP response
+        error_log("SOAP Response: " . $response);
+
         // Check for errors
         if (curl_errno($ch)) {
             throw new Exception('Error: ' . curl_error($ch));
@@ -51,22 +54,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Close cURL session
         curl_close($ch);
 
-        // Check the SOAP response to see if the login was successful
         // Load the SOAP response into a SimpleXML object
         $xml = simplexml_load_string($response);
 
-        // Register the required XML namespaces
-        $xml->registerXPathNamespace('soap', 'http://www.w3.org/2003/05/soap-envelope');
-        $xml->registerXPathNamespace('tempuri', 'http://tempuri.org/');
-        $xml->registerXPathNamespace('xs', 'http://www.w3.org/2001/XMLSchema');
+        $profile_fields = array("sFirstname", "sSurname", "sEmail", "sPassword", "sUsername", "sTelephoneNo");
+        $field_values = array();
 
-        // Use XPath to find the <sEmail> and <sPassword> elements within the <User> element
-        $sEmailElement = $xml->xpath('//tempuri:LoginFormResponse/tempuri:LoginFormResult/NewDataSet/User/sEmail');
-        $sPasswordElement = $xml->xpath('//tempuri:LoginFormResponse/tempuri:LoginFormResult/NewDataSet/User/sPassword');
+        foreach ($profile_fields as $field) {
+            $value = (string) $xml->xpath("//{$field}")[0] ?? null;
+            $field_values[$field] = $value;
+        }
 
         // Check if the <sEmail> and <sPassword> elements are present within the <User> element and if their values match the provided $email and $password
-        if (isset($sEmailElement[0]) && (string) $sEmailElement[0] === $email && isset($sPasswordElement[0]) && (string) $sPasswordElement[0] === $password) {
-            // The SOAP response was successful, proceed with user creation and login
+        if (strtolower($field_values['sEmail']) === strtolower($email) && $field_values['sPassword'] === $password) {
+
             // Get the user object based on the email
             $user = get_user_by('email', $email);
 
@@ -91,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user) {
                 wp_set_auth_cookie($user->ID, true);
                 wp_set_current_user($user->ID, $user->user_login);
-                header("Location: registration-page.php");
+                wp_redirect(home_url('/user/'));
                 exit();
             }
         } else {
