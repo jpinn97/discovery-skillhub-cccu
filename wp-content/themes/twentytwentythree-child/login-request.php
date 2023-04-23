@@ -87,9 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             }
         } else {
-            $current_url = 'http' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-            // If the SOAP request was not successful, redirect to the registration page
-            header("Location: $current_url/register");
+            $registration_url = 'https://' . $_SERVER['HTTP_HOST'] . '/register';
+            header("Location: $registration_url");
             exit();
         }
     } catch (Exception $e) {
