@@ -52,13 +52,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         curl_close($ch);
 
         // Check the SOAP response to see if the login was successful
+        // Load the SOAP response into a SimpleXML object
         $xml = simplexml_load_string($response);
+
+        // Register the required XML namespaces
         $xml->registerXPathNamespace('soap', 'http://www.w3.org/2003/05/soap-envelope');
         $xml->registerXPathNamespace('tempuri', 'http://tempuri.org/');
+        $xml->registerXPathNamespace('xs', 'http://www.w3.org/2001/XMLSchema');
 
-        $result = $xml->xpath('//tempuri:LoginFormResponse/tempuri:LoginFormResult');
+        // Use XPath to find the <sEmail> and <sPassword> elements within the <User> element
+        $sEmailElement = $xml->xpath('//tempuri:LoginFormResponse/tempuri:LoginFormResult/NewDataSet/User/sEmail');
+        $sPasswordElement = $xml->xpath('//tempuri:LoginFormResponse/tempuri:LoginFormResult/NewDataSet/User/sPassword');
 
-        if (isset($result[0]) && $result[0] == 'Success') {
+        // Check if the <sEmail> and <sPassword> elements are present within the <User> element and if their values match the provided $email and $password
+        if (isset($sEmailElement[0]) && (string) $sEmailElement[0] === $email && isset($sPasswordElement[0]) && (string) $sPasswordElement[0] === $password) {
+            // The SOAP response was successful, proceed with user creation and login
             // Get the user object based on the email
             $user = get_user_by('email', $email);
 
