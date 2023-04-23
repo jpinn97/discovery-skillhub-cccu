@@ -87,8 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             }
         } else {
-            $registration_url = 'https://' . $_SERVER['HTTP_HOST'] . '/register';
-            header("Location: $registration_url");
+            // Redirect to the registration page
+            wp_redirect(home_url('/register/'));
             exit();
         }
     } catch (Exception $e) {
