@@ -344,3 +344,39 @@ function custom_update_profile_approval_status($errors, $update, $user)
         }
     }
 }
+
+add_action('show_user_profile', 'custom_show_user_profile');
+add_action('edit_user_profile', 'custom_show_user_profile');
+
+function custom_show_user_profile($user)
+{
+    if (in_array('um_member', $user->roles)) {
+        $profile_approval_status = get_user_meta($user->ID, 'profile_approval_status', true);
+?>
+        <h3>Profile Approval Status</h3>
+        <table class="form-table">
+            <tr>
+                <th><label for="profile_approval_status">Profile Approval Status</label></th>
+                <td>
+                    <select name="profile_approval_status" id="profile_approval_status">
+                        <option value="Pending" <?php selected($profile_approval_status, 'Pending'); ?>>Pending</option>
+                        <option value="Approved" <?php selected($profile_approval_status, 'Approved'); ?>>Approved</option>
+                        <option value="Rejected" <?php selected($profile_approval_status, 'Rejected'); ?>>Rejected</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+<?php
+    }
+}
+
+add_filter('um_prevent_access_to_profile', 'custom_bypass_email_verification', 10, 1);
+
+function custom_bypass_email_verification($prevent)
+{
+    $user = wp_get_current_user();
+    if (in_array('administrator', $user->roles)) {
+        $prevent = false;
+    }
+    return $prevent;
+}
