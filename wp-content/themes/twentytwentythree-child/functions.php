@@ -235,3 +235,11 @@ function register_tenant()
     $cEnquiry = new evoEnquiry($apiKey);
     $cEnquiry->addForm($enquiry);
 }
+
+function enqueue_login_js()
+{
+    if (is_page('login')) {
+        wp_enqueue_script('login-script', get_template_directory_uri() . '/login.js', array('jquery'), '1.0', true);
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_login_js');
