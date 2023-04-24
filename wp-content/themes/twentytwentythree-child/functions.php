@@ -370,6 +370,8 @@ function custom_show_user_profile($user)
     }
 }
 
+# Add redirect for unverified um_member
+add_action('template_redirect', 'custom_um_member_email_verification_check');
 function custom_um_member_email_verification_check()
 {
     // Check if the user is logged in
@@ -382,8 +384,8 @@ function custom_um_member_email_verification_check()
             // Get the email verification status
             $email_verification_status = get_user_meta($user_id, '_um_verified', true);
 
-            // If the email is not verified, redirect the user to the email verification page
-            if ($email_verification_status != 1) {
+            // If the email is not verified and the user is not on the email verification page, redirect the user
+            if ($email_verification_status != 1 && !is_page('email-verification-page')) {
                 // Replace the URL with the URL of your email verification page
                 wp_redirect('/email-verification-page/');
                 exit;
@@ -391,4 +393,3 @@ function custom_um_member_email_verification_check()
         }
     }
 }
-add_action('template_redirect', 'custom_um_member_email_verification_check');
