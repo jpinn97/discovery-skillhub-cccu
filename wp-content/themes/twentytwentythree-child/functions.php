@@ -393,3 +393,44 @@ function custom_um_member_email_verification_check()
         }
     }
 }
+
+# Ajax sends email verification request
+add_action('wp_ajax_send_verification_email_um', 'my_custom_send_verification_email_um');
+function my_custom_send_verification_email_um()
+{
+    if (is_user_logged_in()) {
+        $user_id = get_current_user_id();
+        $user_status = get_user_meta($user_id, 'status', true);
+
+        if ($user_status === 'awaiting_email_confirmation') {
+            UM()->mail()->send(um_user('user_email'), 'verify_email');
+            wp_send_json_success(array('message' => 'Verification email sent.'));
+        } else {
+            wp_send_json_error(array('message' => 'User email already verified or not applicable.'));
+        }
+    } else {
+        wp_send_json_error(array('message' => 'User not logged in.'));
+    }
+}
+
+# Enqueue email-verify.js to email verification page
+add_action('wp_enqueue_scripts', 'enqueue_email_verify_script');
+
+function enqueue_email_verify_script()
+{
+    // Check if the user is on the email-verification-page
+    if (is_page('email-verification-page')) {
+        wp_enqueue_script(
+            'email-verify',
+            get_template_directory_uri() . '/email-verify.js',
+            array('jquery'),
+            '1.0',
+            true
+        );
+
+        // Localize the script with the WordPress ajax URL
+        wp_localize_script('email-verify', 'emailVerifyData', array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+        ));
+    }
+}
