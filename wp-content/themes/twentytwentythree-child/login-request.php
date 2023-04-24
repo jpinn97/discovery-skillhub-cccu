@@ -13,7 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (wp_check_password($password, $user->data->user_pass, $user->ID)) {
             wp_set_auth_cookie($user->ID, true);
             wp_set_current_user($user->ID, $user->user_login);
-            wp_redirect(home_url('/user/'));
+            $um_role = um_user('role', $user->ID);
+            if ($um_role == 'um_member') {
+                wp_redirect(home_url('/member-portal/'));
+            } else if ($um_role == 'um_representative') {
+                wp_redirect(home_url('/representative-portal/'));
+            } else if ($um_role == 'um_tenant') {
+                wp_redirect(home_url('/tenant-portal/'));
+            } else {
+                wp_redirect(home_url('/'));
+            }
             exit();
         } else {
             // Redirect to the registration page
@@ -85,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Check if the <sEmail> and <sPassword> elements are present within the <User> element and if their values match the provided $email and $password
             if (strtolower($field_values['sEmail']) === strtolower($email) && $field_values['sPassword'] === $password) {
-
                 // Use a random username or generate one based on the email address
                 $username = 'user_' . wp_generate_password(6, false);
 
@@ -99,12 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Set the user role
                 $user = new WP_User($user_id);
-                $user->set_role('um_tenant'); // Set the user role as needed
+                $user->set_role('representative'); // Set the user role as needed
 
                 // Set the auth cookie and log the user in
                 wp_set_auth_cookie($user->ID, true);
                 wp_set_current_user($user->ID, $user->user_login);
-                wp_redirect(home_url('/user/'));
+                wp_redirect(home_url('/representative-portal/'));
                 exit();
             } else {
                 // Redirect to the registration page
@@ -121,3 +129,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+function enqueue_login_js()
+{
+    if (is_page('login')) {
+        wp_enqueue_script('login-script', get_template_directory_uri() . '/login.js', array('jquery'), '1.0', true);
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_login_js');
