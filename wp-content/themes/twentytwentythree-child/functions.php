@@ -226,10 +226,11 @@ function register_tenant()
         'sEmail' => 'Test@Test.com',
         'lEnquiryType' => '0',
         'lCategoryIDs' => '99,102,958',
-        'sComments'        => ''
+        'sComments'        => '',
+        'bConsentMarketing' => 'true' // Marketing
     );
 
-    $apiKey = getenv('EVO_API_KEY');
+    $apiKey = EVO_API_KEY;
 
     $cEnquiry = new evoEnquiry($apiKey);
     $cEnquiry->addForm($enquiry);
