@@ -385,9 +385,9 @@ function custom_um_member_email_verification_check()
             $email_verification_status = get_user_meta($user_id, '_um_verified', true);
 
             // If the email is not verified and the user is not on the email verification page, redirect the user
-            if ($email_verification_status != 1 && !is_page('email-verification-page')) {
+            if ($email_verification_status != 1 && !is_page('email-verification')) {
                 // Replace the URL with the URL of your email verification page
-                wp_redirect('/email-verification-page/');
+                wp_redirect('/email-verification/');
                 exit;
             }
         }
@@ -418,8 +418,8 @@ add_action('wp_enqueue_scripts', 'enqueue_email_verify_script');
 
 function enqueue_email_verify_script()
 {
-    // Check if the user is on the email-verification-page
-    if (is_page('email-verification-page')) {
+    // Check if the user is on the email-verification
+    if (is_page('email-verification')) {
         wp_enqueue_script(
             'email-verify',
             get_template_directory_uri() . '/email-verify.js',
