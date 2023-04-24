@@ -1,4 +1,7 @@
 <?php
+
+add_action('init', 'register_custom_menus');
+
 function register_custom_menus()
 {
     // test
@@ -9,7 +12,8 @@ function register_custom_menus()
         )
     );
 }
-add_action('init', 'register_custom_menus');
+
+add_shortcode('logged_in_out_menu', 'logged_in_out_menu_shortcode');
 
 function logged_in_out_menu_shortcode($atts, $content = null)
 {
@@ -25,7 +29,8 @@ function logged_in_out_menu_shortcode($atts, $content = null)
         )
     );
 }
-add_shortcode('logged_in_out_menu', 'logged_in_out_menu_shortcode');
+
+add_action('um_profile_header', 'um_profile_points', 10);
 
 function um_profile_points()
 {
@@ -44,7 +49,7 @@ function um_profile_points()
     echo '</div>';
 }
 
-add_action('um_profile_header', 'um_profile_points', 10);
+add_action('um_profile_update', 'check_profile', 10);
 
 function check_profile()
 {
@@ -95,7 +100,8 @@ function check_profile()
     }
 }
 
-add_action('um_profile_update', 'check_profile', 10);
+
+add_action('um_user_register', 'first_time_register', 10, 1);
 
 function first_time_register()
 {
@@ -109,7 +115,6 @@ function first_time_register()
     // Check if the user has completed their profile
     check_profile();
 }
-add_action('um_user_register', 'first_time_register', 10, 1);
 
 function approved_tenant_list()
 {
@@ -236,13 +241,14 @@ function register_tenant()
     $cEnquiry->addForm($enquiry);
 }
 
+add_action('wp_enqueue_scripts', 'enqueue_login_js');
+
 function enqueue_login_js()
 {
     if (is_page('login')) {
         wp_enqueue_script('login-script', get_template_directory_uri() . '/login.js', array('jquery'), '1.0', true);
     }
 }
-add_action('wp_enqueue_scripts', 'enqueue_login_js');
 
 // Schedule an action if it's not already scheduled
 if (!wp_next_scheduled('um_delete_inactive_users')) {
@@ -253,7 +259,8 @@ if (!wp_next_scheduled('um_delete_inactive_users')) {
 add_action('um_delete_inactive_users', 'um_delete_inactive_users_function');
 
 // Function to delete inactive users
-function um_delete_inactive_users_function() {
+function um_delete_inactive_users_function()
+{
     // Define your criteria for inactive users
     $inactive_days = 180; // Set the number of days to consider a user inactive
 
@@ -270,6 +277,70 @@ function um_delete_inactive_users_function() {
         // If the user has never logged in or last logged in before the cutoff date, delete them
         if (empty($last_login) || $last_login < $cutoff_date) {
             wp_delete_user($user->ID);
+        }
+    }
+}
+// Add the profile_approval_status meta key for new members
+add_action('user_register', 'custom_add_profile_approval_status', 10, 1);
+function custom_add_profile_approval_status($user_id)
+{
+    // Get the user's role
+    $user = get_userdata($user_id);
+
+    // Check if the user has the "um_member" role
+    if (in_array('um_member', $user->roles)) {
+        // Add the 'profile_approval_status' meta key with the value 'Pending'
+        update_user_meta($user_id, 'profile_approval_status', 'Pending');
+    }
+}
+
+// Add a filter to check the profile approval status
+add_filter('um_user', 'custom_profile_approval_filter', 10, 1);
+function custom_profile_approval_filter($user_id)
+{
+    // Get the user's profile approval status
+    $profile_approval_status = get_user_meta($user_id, 'profile_approval_status', true);
+
+    // If the profile is pending, hide the profile information
+    if ($profile_approval_status == 'Pending') {
+        add_filter('body_class', 'custom_add_unapproved_profile_class');
+    }
+
+    return $user_id;
+}
+
+add_filter('manage_users_columns', 'custom_add_users_approval_status_column');
+function custom_add_users_approval_status_column($columns)
+{
+    $columns['profile_approval_status'] = 'Profile Approval Status';
+    return $columns;
+}
+
+add_action('manage_users_custom_column', 'custom_show_users_approval_status_column_content', 10, 3);
+function custom_show_users_approval_status_column_content($value, $column_name, $user_id)
+{
+    if ($column_name == 'profile_approval_status') {
+        $profile_approval_status = get_user_meta($user_id, 'profile_approval_status', true);
+        if ($profile_approval_status) {
+            return $profile_approval_status;
+        } else {
+            return 'N/A';
+        }
+    }
+    return $value;
+}
+
+// Update the profile approval status when the user profile is updated
+add_action('user_profile_update_errors', 'custom_update_profile_approval_status', 10, 3);
+
+function custom_update_profile_approval_status($errors, $update, $user)
+{
+    // Check if the user has the "um_member" role and "profile_approval_status" field is present
+    if (in_array('um_member', $user->roles) && isset($_POST['profile_approval_status'])) {
+        $new_status = $_POST['profile_approval_status'];
+        $old_status = get_user_meta($user->ID, 'profile_approval_status', true);
+        if ($new_status != $old_status) {
+            update_user_meta($user->ID, 'profile_approval_status', $new_status);
         }
     }
 }
