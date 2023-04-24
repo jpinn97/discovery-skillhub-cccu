@@ -243,3 +243,33 @@ function enqueue_login_js()
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_login_js');
+
+// Schedule an action if it's not already scheduled
+if (!wp_next_scheduled('um_delete_inactive_users')) {
+    wp_schedule_event(time(), 'daily', 'um_delete_inactive_users');
+}
+
+// Hook into the scheduled action
+add_action('um_delete_inactive_users', 'um_delete_inactive_users_function');
+
+// Function to delete inactive users
+function um_delete_inactive_users_function() {
+    // Define your criteria for inactive users
+    $inactive_days = 180; // Set the number of days to consider a user inactive
+
+    // Calculate the cutoff date
+    $cutoff_date = strtotime("-$inactive_days days");
+
+    // Get all users
+    $users = get_users();
+
+    // Loop through users and delete inactive ones
+    foreach ($users as $user) {
+        $last_login = get_user_meta($user->ID, '_um_last_login', true);
+
+        // If the user has never logged in or last logged in before the cutoff date, delete them
+        if (empty($last_login) || $last_login < $cutoff_date) {
+            wp_delete_user($user->ID);
+        }
+    }
+}

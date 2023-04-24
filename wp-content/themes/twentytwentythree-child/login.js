@@ -6,8 +6,6 @@ jQuery(document).ready(function ($) {
 
   if (loginForm.length) {
     loginForm.unbind("submit").bind("submit", function (event) {
-      alert("submit event fired");
-
       if (!emailInput.val() || !passwordInput.val()) {
         event.preventDefault(); // cancel the form submission
         alert("Please fill in all required fields.");
