@@ -370,13 +370,25 @@ function custom_show_user_profile($user)
     }
 }
 
-add_filter('um_prevent_access_to_profile', 'custom_bypass_email_verification', 10, 1);
-
-function custom_bypass_email_verification($prevent)
+function custom_um_member_email_verification_check()
 {
-    $user = wp_get_current_user();
-    if (in_array('administrator', $user->roles)) {
-        $prevent = false;
+    // Check if the user is logged in
+    if (is_user_logged_in()) {
+        // Get the current user ID
+        $user_id = get_current_user_id();
+
+        // Check if the user is an Ultimate Member (UM) member
+        if (in_array('um_member', (array) get_userdata($user_id)->roles)) {
+            // Get the email verification status
+            $email_verification_status = get_user_meta($user_id, '_um_verified', true);
+
+            // If the email is not verified, redirect the user to the email verification page
+            if ($email_verification_status != 1) {
+                // Replace the URL with the URL of your email verification page
+                wp_redirect('/email-verification-page/');
+                exit;
+            }
+        }
     }
-    return $prevent;
 }
+add_action('template_redirect', 'custom_um_member_email_verification_check');
