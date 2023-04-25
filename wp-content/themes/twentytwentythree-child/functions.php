@@ -361,9 +361,6 @@ function custom_send_verification_email_um()
     }
 }
 
-
-
-
 # Enqueue email-verify.js to email verification pagefunction enqueue_email_verify_script()
 function enqueue_email_verify_script()
 {
@@ -385,42 +382,124 @@ function enqueue_email_verify_script()
 }
 add_action('wp_enqueue_scripts', 'enqueue_email_verify_script');
 
-function um_add_approve_profile_action($actions, $user_id)
+
+// Add the profile_approval_status meta key for new members
+add_action('user_register', 'custom_add_profile_approval_status', 10, 1);
+function custom_add_profile_approval_status($user_id)
 {
-    if (current_user_can('manage_options') && get_user_meta($user_id, 'profile_approved', true) != 1) {
-        $actions['approve_profile'] = array(
-            'icon' => 'check', // Choose an appropriate icon for the action
-            'title' => 'Approve Profile',
-            'handler' => 'approve_profile'
-        );
+    // Get the user's role
+    $user = get_userdata($user_id);
+
+    // Check if the user has the "um_member" role
+    if (in_array('um_member', $user->roles)) {
+        // Add the 'profile_approval_status' meta key with the value 'Pending'
+        update_user_meta($user_id, 'profile_approval_status', 'Pending');
     }
-
-    return $actions;
-}
-add_filter('um_profile_edit_menu_items', 'um_add_approve_profile_action', 10, 2);
-
-function approve_user_profile($user_id)
-{
-    update_user_meta($user_id, 'profile_approved', 1);
 }
 
-function um_approve_profile_ajax()
+// Add a filter to check the profile approval status
+add_filter('um_user', 'custom_profile_approval_filter', 10, 1);
+function custom_profile_approval_filter($user_id)
 {
-    if (!wp_verify_nonce($_POST['nonce'], 'um-frontend-nonce')) {
-        wp_send_json_error(array('message' => 'Invalid nonce.'));
+    // Get the user's profile approval status
+    $profile_approval_status = get_user_meta($user_id, 'profile_approval_status', true);
+
+    // If the profile is pending, hide the profile information
+    if ($profile_approval_status == 'Pending') {
+        add_filter('body_class', 'custom_add_unapproved_profile_class');
     }
 
-    if (!current_user_can('manage_options')) {
-        wp_send_json_error(array('message' => 'You do not have permission to perform this action.'));
-    }
-
-    $user_id = intval($_POST['user_id']);
-
-    if (!$user_id) {
-        wp_send_json_error(array('message' => 'Invalid user ID.'));
-    }
-
-    approve_user_profile($user_id);
-    wp_send_json_success();
+    return $user_id;
 }
-add_action('wp_ajax_um_approve_profile', 'um_approve_profile_ajax');
+
+add_filter('manage_users_columns', 'custom_add_users_approval_status_column');
+function custom_add_users_approval_status_column($columns)
+{
+    $columns['profile_approval_status'] = 'Profile Approval Status';
+    return $columns;
+}
+
+add_action('manage_users_custom_column', 'custom_show_users_approval_status_column_content', 10, 3);
+function custom_show_users_approval_status_column_content($value, $column_name, $user_id)
+{
+    if ($column_name == 'profile_approval_status') {
+        $profile_approval_status = get_user_meta($user_id, 'profile_approval_status', true);
+        if ($profile_approval_status) {
+            return $profile_approval_status;
+        } else {
+            return 'N/A';
+        }
+    }
+    return $value;
+}
+
+// Update the profile approval status when the user profile is updated
+add_action('user_profile_update_errors', 'custom_update_profile_approval_status', 10, 3);
+
+function custom_update_profile_approval_status($errors, $update, $user)
+{
+    // Check if the user has the "um_member" role and "profile_approval_status" field is present
+    if (in_array('um_member', $user->roles) && isset($_POST['profile_approval_status'])) {
+        $new_status = $_POST['profile_approval_status'];
+        $old_status = get_user_meta($user->ID, 'profile_approval_status', true);
+        if ($new_status != $old_status) {
+            update_user_meta($user->ID, 'profile_approval_status', $new_status);
+        }
+    }
+}
+// Add a function to display and update the profile approval status field in the user profile page
+add_action('show_user_profile', 'custom_show_user_profile');
+add_action('edit_user_profile', 'custom_show_user_profile');
+function custom_show_user_profile($user)
+{
+    if (current_user_can('manage_options')) { // Only display for administrators
+        $profile_approval_status = get_user_meta($user->ID, 'profile_approval_status', true);
+?>
+        <h3>Profile Approval Status</h3>
+        <table class="form-table">
+            <tr>
+                <th><label for="profile_approval_status">Profile Approval Status</label></th>
+                <td>
+                    <select name="profile_approval_status" id="profile_approval_status">
+                        <option value="Pending" <?php selected($profile_approval_status, 'Pending'); ?>>Pending</option>
+                        <option value="Approved" <?php selected($profile_approval_status, 'Approved'); ?>>Approved</option>
+                        <option value="Rejected" <?php selected($profile_approval_status, 'Rejected'); ?>>Rejected</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    <?php
+    }
+}
+
+// Add JavaScript to update profile approval status using AJAX
+function custom_update_profile_approval_status_script()
+{
+    // Only add script to user profile page for administrators
+    if (is_admin() && current_user_can('manage_options')) { ?>
+        <script>
+            jQuery(document).ready(function($) {
+                // Add an event listener to the profile approval status form
+                $('#profile_approval_status_form').on('submit', function(event) {
+                    event.preventDefault(); // Prevent the form from submitting and refreshing the page
+
+                    // Get the user ID and the new profile approval status value from the form
+                    var user_id = get_current_user_id()
+                    var status = $('#profile_approval_status').val();
+
+                    // Send an AJAX request to update the profile approval status
+                    var data = {
+                        'action': 'custom_update_profile_approval_status',
+                        'user_id': user_id,
+                        'profile_approval_status': status
+                    };
+                    $.post(ajaxurl, data, function(response) {
+                        // Display a success message if the update was successful
+                        $('#profile_approval_status_message').html(response);
+                    });
+                });
+            });
+        </script>
+<?php }
+}
+add_action('admin_footer', 'custom_update_profile_approval_status_script');
