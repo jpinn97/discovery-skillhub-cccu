@@ -415,11 +415,34 @@ function custom_send_verification_email_um()
 {
     if (is_user_logged_in()) {
         $user_id = get_current_user_id();
-        $user_status = get_user_meta($user_id, 'status', true);
+        $user_status = get_user_meta($user_id, 'account_status', true);
 
         if ($user_status === 'awaiting_email_confirmation') {
-            UM()->mail()->send(um_user('user_email'), 'verify_email');
-            wp_send_json_success(array('message' => 'Verification email sent.'));
+            $user_email = um_user('user_email');
+
+            // Get the email template from Ultimate Member settings
+            $email_template = UM()->options()->get('email_template');
+
+            // Replace the necessary placeholders in the email template
+            $email_content = um_convert_tags($email_template, array(
+                'username' => um_user('display_name'),
+                'login_url' => um_get_core_page('login'),
+            ));
+
+            // Set up the email headers
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+
+            // Send the email using the WordPress wp_mail function
+            $result = wp_mail($user_email, 'Verify Email', $email_content, $headers);
+
+            // Log the result of the email sending
+            error_log('Email sending result: ' . print_r($result, true));
+
+            if ($result) {
+                wp_send_json_success(array('message' => 'Verification email sent.'));
+            } else {
+                wp_send_json_error(array('message' => 'Email sending failed.'));
+            }
         } else {
             wp_send_json_error(array('message' => 'User email already verified or not applicable.'));
         }
@@ -428,7 +451,11 @@ function custom_send_verification_email_um()
     }
 }
 
+
+
+
 # Enqueue email-verify.js to email verification pagefunction enqueue_email_verify_script()
+function enqueue_email_verify_script()
 {
     // Check if the user is on the email-verification page
     if (is_page('email-verification')) {
