@@ -370,6 +370,20 @@ function custom_show_user_profile($user)
     }
 }
 
+function is_email_verified($user_id)
+{
+    // Get the account status for the given user ID
+    $account_status = get_user_meta($user_id, 'account_status', true);
+
+    // Check if the account status is awaiting email confirmation
+    if ($account_status === 'awaiting_email_confirmation') {
+        return false;
+    }
+
+    return true;
+}
+
+
 # Add redirect for unverified um_member
 add_action('template_redirect', 'custom_um_member_email_verification_check');
 function custom_um_member_email_verification_check()
@@ -381,12 +395,13 @@ function custom_um_member_email_verification_check()
 
         // Check if the user is an Ultimate Member (UM) member
         if (in_array('um_member', (array) get_userdata($user_id)->roles)) {
+
             // Get the email verification status
-            $email_verification_status = get_user_meta($user_id, '_um_verified', true);
+            $email_verification_status = is_email_verified($user_id);
 
             // If the email is not verified and the user is not on the email verification page, redirect the user
             if ($email_verification_status != 1 && !is_page('email-verification')) {
-                // Replace the URL with the URL of your email verification page
+                // Replace the URL with the URL of the email verification page
                 wp_redirect('/email-verification/');
                 exit;
             }
@@ -395,8 +410,8 @@ function custom_um_member_email_verification_check()
 }
 
 # Ajax sends email verification request
-add_action('wp_ajax_send_verification_email_um', 'my_custom_send_verification_email_um');
-function my_custom_send_verification_email_um()
+add_action('wp_ajax_send_verification_email_um', 'custom_send_verification_email_um');
+function custom_send_verification_email_um()
 {
     if (is_user_logged_in()) {
         $user_id = get_current_user_id();
@@ -413,12 +428,9 @@ function my_custom_send_verification_email_um()
     }
 }
 
-# Enqueue email-verify.js to email verification page
-add_action('wp_enqueue_scripts', 'enqueue_email_verify_script');
-
-function enqueue_email_verify_script()
+# Enqueue email-verify.js to email verification pagefunction enqueue_email_verify_script()
 {
-    // Check if the user is on the email-verification
+    // Check if the user is on the email-verification page
     if (is_page('email-verification')) {
         wp_enqueue_script(
             'email-verify',
@@ -434,3 +446,4 @@ function enqueue_email_verify_script()
         ));
     }
 }
+add_action('wp_enqueue_scripts', 'enqueue_email_verify_script');
