@@ -1,4 +1,4 @@
-jQuery("#request-verification-link-btn").on("click", function () {
+jQuery("#resend-verification-email-btn").on("click", function () {
   var user_id = um.user("ID"); // Get the current user ID using the Ultimate Member JavaScript API
   var data = {
     action: "send_verification_email", // Set the AJAX action
