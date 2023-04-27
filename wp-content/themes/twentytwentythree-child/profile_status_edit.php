@@ -6,7 +6,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $meta_key = 'profile_approval_status'; // Replace with the actual meta key
 
     update_user_meta($profile_id, $meta_key, $profile_approval_status);
-
-    // Process the form data using the $profile_id and $profile_approval_status variables as needed
-    // ...
 }
