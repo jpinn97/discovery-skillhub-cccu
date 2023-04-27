@@ -476,7 +476,7 @@ function custom_profile_approval_status_form()
 
     if ($user_role == 'administrator') {
 ?>
-        <form id="profile_approval_status_form" action="profile_status_edit.php" method="POST">>
+        <form id="profile_approval_status_form" action="<?php echo get_template_directory_uri() . '/profile_status_edit.php'; ?>" method="POST">>
             <input type="hidden" name="user_id" value="<?php um_profile_id(); ?>">
             <label for="profile_approval_status">Profile Approval Status:</label>
             <select name="profile_approval_status" id="profile_approval_status">
