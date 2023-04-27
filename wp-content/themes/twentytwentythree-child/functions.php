@@ -444,3 +444,49 @@ function update_um_account_status()
         wp_send_json_error(array('message' => 'Invalid request.'));
     }
 }
+
+add_filter('um_pre_shortcode_args_filter', 'custom_um_pre_shortcode_args', 10, 1);
+function custom_um_pre_shortcode_args($args)
+{
+    // Check if the shortcode form_id is 7
+    if (isset($args['form_id']) && intval($args['form_id']) === 7) {
+        // Get the current user ID
+        $user_id = get_current_user_id();
+
+        // Get the user's profile_status
+        $profile_status = get_user_meta($user_id, 'profile_status', true);
+
+        // Check if the profile_status is not "Approved"
+        if ($profile_status !== 'Approved') {
+            // Prevent the shortcode from being executed by setting a non-existing template
+            $args['template'] = 'no_profile';
+        }
+    }
+
+    return $args;
+}
+
+add_action('um_profile_header', 'custom_profile_approval_status_form');
+
+function custom_profile_approval_status_form()
+{
+    $current_user = wp_get_current_user();
+    $user_roles = $current_user->roles;
+    $user_role = array_shift($user_roles);
+
+    if ($user_role == 'administrator') {
+?>
+        <form id="profile_approval_status_form" action="profile_status_edit.php" method="POST">>
+            <input type="hidden" name="user_id" value="<?php um_profile_id(); ?>">
+            <label for="profile_approval_status">Profile Approval Status:</label>
+            <select name="profile_approval_status" id="profile_approval_status">
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+            <input type="submit" value="Save Changes">
+            <div id="profile_approval_status_message"></div>
+        </form>
+<?php
+    }
+}
