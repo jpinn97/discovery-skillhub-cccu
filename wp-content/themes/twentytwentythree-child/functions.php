@@ -260,7 +260,7 @@ add_action('um_delete_inactive_users', 'um_delete_inactive_users_function');
 function um_delete_inactive_users_function()
 {
     // Define your criteria for inactive users
-    $inactive_days = 180; // Set the number of days to consider a user inactive
+    $inactive_days = 365; // Set the number of days to consider a user inactive
 
     // Calculate the cutoff date
     $cutoff_date = strtotime("-$inactive_days days");
@@ -476,7 +476,7 @@ function custom_profile_approval_status_form()
 
     if ($user_role == 'administrator') {
 ?>
-        <form id="profile_approval_status_form" action="<?php echo get_template_directory_uri() . '/profile_status_edit.php'; ?>" method="POST">>
+        <form id="profile_approval_status_form" action="<?php get_template_directory_uri() . '/profile_status_edit.php'; ?>" method="POST">>
             <input type="hidden" name="user_id" value="<?php um_profile_id(); ?>">
             <label for="profile_approval_status">Profile Approval Status:</label>
             <select name="profile_approval_status" id="profile_approval_status">
@@ -488,5 +488,34 @@ function custom_profile_approval_status_form()
             <div id="profile_approval_status_message"></div>
         </form>
 <?php
+    }
+}
+
+add_action('um_submit_form_errors_hook_', 'um_custom_validate_postcode', 999, 1);
+function um_custom_validate_postcode($args)
+{
+    $key = 'postcode'; // Replace 'postcode' with the actual key of your postcode field if different
+
+    // Check if the postcode field exists
+    if (!isset($args[$key])) {
+        return;
+    }
+
+    // Check if postcode is on the list of valid Kent postcodes
+    $valid_postcodes = array(
+        'TN1', 'TN10', 'TN11', 'TN12', 'TN13', 'TN14', 'TN15', 'TN16', 'TN17', 'TN18', 'TN2', 'TN23', 'TN24', 'TN25', 'TN26', 'TN27', 'TN28', 'TN29', 'TN3', 'TN30', 'TN4', 'TN8', 'TN9', 'BR6', 'BR8', 'CT1', 'CT10', 'CT11', 'CT12', 'CT13', 'CT14', 'CT15', 'CT16', 'CT17', 'CT18', 'CT19', 'CT2', 'CT20', 'CT21', 'CT3', 'CT4', 'CT5', 'CT6', 'CT7', 'CT8', 'CT9', 'DA1', 'DA10', 'DA11', 'DA12', 'DA13', 'DA2', 'DA3', 'DA4', 'DA9', 'ME1', 'ME10', 'ME11', 'ME12', 'ME13', 'ME14', 'ME15', 'ME16', 'ME17', 'ME18', 'ME19', 'ME2', 'ME20', 'ME3', 'ME4', 'ME5', 'ME6', 'ME7', 'ME8', 'ME9'
+    );
+    // Extract the outward code from the full postcode
+    $outward_code = strtoupper(preg_replace('/\s+/', '', $args[$key]));
+    $outward_code = preg_replace('/[0-9][A-Z]{2}$/', '', $outward_code);
+
+    // Validate if the postcode is from Kent
+    if (!in_array($outward_code, $valid_postcodes)) {
+        UM()->form()->add_error($key, __('Please enter a valid postcode in Kent.', 'ultimate-member'));
+    }
+
+    // Validate the postcode format
+    if (!preg_match('/^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][A-Z]{2}$/i', $args[$key])) {
+        UM()->form()->add_error($key, __('Please enter a valid UK postcode.', 'ultimate-member'));
     }
 }
