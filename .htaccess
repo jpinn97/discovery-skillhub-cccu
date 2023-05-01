@@ -1,13 +1,61 @@
+# BEGIN LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+<IfModule LiteSpeed>
+RewriteEngine on
+CacheLookup on
+RewriteRule .* - [E=Cache-Control:no-autoflush]
+RewriteRule \.litespeed_conf\.dat - [F,L]
 
-# Really Simple SSL
+### marker MOBILE start ###
+RewriteCond %{HTTP_USER_AGENT} Mobile|Android|Silk/|Kindle|BlackBerry|Opera\ Mini|Opera\ Mobi [NC]
+RewriteRule .* - [E=Cache-Control:vary=%{ENV:LSCACHE_VARY_VALUE}+ismobile]
+### marker MOBILE end ###
+
+### marker CACHE RESOURCE start ###
+RewriteRule wp-content/.*/[^/]*(responsive|css|js|dynamic|loader|fonts)\.php - [E=cache-control:max-age=3600]
+### marker CACHE RESOURCE end ###
+
+### marker FAVICON start ###
+RewriteRule favicon\.ico$ - [E=cache-control:max-age=86400]
+### marker FAVICON end ###
+
+### marker WEBP start ###
+RewriteCond %{HTTP_ACCEPT} "image/webp"
+RewriteRule .* - [E=Cache-Control:vary=%{ENV:LSCACHE_VARY_VALUE}+webp]
+RewriteCond %{HTTP_USER_AGENT} iPhone.*Version/(\d{2}).*Safari
+RewriteCond %1 >13
+RewriteRule .* - [E=Cache-Control:vary=%{ENV:LSCACHE_VARY_VALUE}+webp]
+### marker WEBP end ###
+
+### marker DROPQS start ###
+CacheKeyModify -qs:fbclid
+CacheKeyModify -qs:gclid
+CacheKeyModify -qs:utm*
+CacheKeyModify -qs:_ga
+### marker DROPQS end ###
+
+</IfModule>
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END LSCACHE
+# BEGIN NON_LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END NON_LSCACHE
+
+#Begin Really Simple Security
+Options -Indexes
 Header always set Strict-Transport-Security: "max-age=31536000" env=HTTPS 
 Header always set X-XSS-Protection "0"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
 Header always set X-Frame-Options: "SAMEORIGIN"
 Header always set Permissions-Policy: "" 
-# End Really Simple SSL
-
+Header always set X-Content-Type-Options "nosniff"
+Header always set Upgrade-Insecure-Requests "1"
+#End Really Simple Security
 # BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -17,4 +65,17 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
+
 # END WordPress
+
+# BEGIN Hotlinking
+# The directives (lines) between "BEGIN Hotlinking" and "END Hotlinking" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+
+# END Hotlinking
+# BEGIN Shibboleth
+# The directives (lines) between "BEGIN Shibboleth" and "END Shibboleth" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+# END Shibboleth

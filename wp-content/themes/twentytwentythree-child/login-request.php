@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (wp_check_password($password, $user->data->user_pass, $user->ID)) {
             wp_set_auth_cookie($user->ID, true);
             wp_set_current_user($user->ID, $user->user_login);
-            $um_role = um_user('role', $user->ID);
-            if ($um_role == 'um_member') {
+            $user_role = get_userdata($user->ID)->roles[0];
+            if ($user_role == 'um_member') {
                 wp_redirect(home_url('/member-portal/'));
-            } else if ($um_role == 'um_representative') {
+            } else if ($user_role == 'um_representative') {
                 wp_redirect(home_url('/representative-portal/'));
-            } else if ($um_role == 'um_tenant') {
+            } else if ($user_role == 'um_tenant') {
                 wp_redirect(home_url('/tenant-portal/'));
             } else {
                 wp_redirect(home_url('/'));

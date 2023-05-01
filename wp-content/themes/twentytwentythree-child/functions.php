@@ -522,35 +522,35 @@ function um_custom_validate_postcode($args)
 
 function enqueue_additional_resources()
 {
-    wp_enqueue_style('bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css?ver=6.2');
-    wp_enqueue_style('rajdhani-css', 'https://fonts.googleapis.com/css?family=Rajdhani%3A300%2C400%2C500%2C600%2C700&#038;display=swap&#038;ver=6.2');
-    wp_enqueue_style('montserrat-css', 'https://fonts.googleapis.com/css?family=Montserrat%3A300%2C400%2C500%2C700&#038;display=swap&#038;ver=6.2');
-    wp_enqueue_style('aos-css', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/aos.css?ver=6.2');
-    wp_enqueue_style('core-css', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/style.css?ver=6.2');
-    wp_enqueue_style('fontawesome-css', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css?ver=6.2');
-    wp_enqueue_style('owl-css', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/owl.carousel.css?ver=6.2');
-    wp_enqueue_style('owl_theme-css', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/owl.theme.default.css?ver=6.2');
-    wp_enqueue_style('themestyles-css', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/style.css?ver=6.2');
+    wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css?ver=6.2');
+    wp_enqueue_style('rajdhani', 'https://fonts.googleapis.com/css?family=Rajdhani%3A300%2C400%2C500%2C600%2C700&#038;display=swap&#038;ver=6.2');
+    wp_enqueue_style('montserrat', 'https://fonts.googleapis.com/css?family=Montserrat%3A300%2C400%2C500%2C700&#038;display=swap&#038;ver=6.2');
+    wp_enqueue_style('aos', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/aos.css?ver=6.2');
+    wp_enqueue_style('core', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/style.css?ver=6.2');
+    wp_enqueue_style('fontawesome', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css?ver=6.2');
+    wp_enqueue_style('owl', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/owl.carousel.css?ver=6.2');
+    wp_enqueue_style('owl_theme', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/owl.theme.default.css?ver=6.2');
+    wp_enqueue_style('themestyles', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/style.css?ver=6.2');
     wp_enqueue_style('my-theme-style', get_stylesheet_uri());
 
-    wp_enqueue_script('jquery-js', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?ver=6.2');
-    wp_add_inline_script('jquery-js', '
+    wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?ver=6.2');
+    wp_add_inline_script('jquery', '
             jQuery(document).ready(function() {
                 // jQuery code here
             });
         ');
-    wp_enqueue_script('popper-js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js?ver=6.2');
-    wp_enqueue_script('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js?ver=6.2');
-    wp_enqueue_script('lottie-js', 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.4/lottie_svg.min.js?ver=6.2');
-    wp_enqueue_script('waypoints-js', 'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js?ver=6.2');
-    wp_enqueue_script('aos-js', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/aos.js?ver=6.2');
-    wp_enqueue_script('themefunctions-js', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/theme_functions.js?ver=6.2');
-    wp_enqueue_script('countup-js', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/counterup2-1.0.1.min.js?ver=6.2');
-    wp_enqueue_script('owl_js-js', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/owl.carousel.js?ver=6.2');
-    wp_enqueue_script('lax-js', 'https://cdn.jsdelivr.net/npm/lax.js?ver=6.2');
+    wp_enqueue_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js?ver=6.2');
+    wp_enqueue_script('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js?ver=6.2');
+    wp_enqueue_script('lottie', 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.4/lottie_svg.min.js?ver=6.2');
+    wp_enqueue_script('waypoints', 'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js?ver=6.2');
+    wp_enqueue_script('aos', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/aos.js?ver=6.2');
+    wp_enqueue_script('themefunctions', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/theme_functions.js?ver=6.2');
+    wp_enqueue_script('countup', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/counterup2-1.0.1.min.js?ver=6.2');
+    wp_enqueue_script('owl_js', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/owl.carousel.js?ver=6.2');
+    wp_enqueue_script('lax', 'https://cdn.jsdelivr.net/npm/lax.js?ver=6.2');
 
     // Additional inline script
-    wp_add_inline_script('themefunctions-js', '
+    wp_add_inline_script('themefunctions', '
             jQuery(document).ready(function() {
                 // Custom jQuery code here
             });
