@@ -19,19 +19,44 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 }
 
 #logged-in-out-menu-container {
-    padding-top: 8px;  /* Adjust the value as needed for the desired padding */
+  padding-top: 8px; /* Adjust the value as needed for the desired padding */
 }
 
 #menu-logged-in-menu li {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 #menu-visitor-menu li {
-	margin-right: 50px
+  margin-right: 50px;
 }
 
 .header::after {
   content: "";
   display: block;
   height: 150px; /* Adjust this value to increase or decrease the spacer height */
+}
+.offerings-board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.offerings-column {
+  flex: 1 1 300px;
+  margin-right: 20px;
+}
+
+.offerings-column:last-child {
+  margin-right: 0;
+}
+
+.offerings-column h2 {
+  margin-top: 0;
+}
+
+.offerings-column p {
+  margin: 0;
+}
+
+.offerings-column:nth-child(4) p:last-child {
+  margin-top: 10px;
 }
