@@ -29,3 +29,9 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 #menu-visitor-menu li {
 	margin-right: 50px
 }
+
+.header::after {
+  content: "";
+  display: block;
+  height: 150px; /* Adjust this value to increase or decrease the spacer height */
+}
