@@ -1,6 +1,7 @@
 <?php
 // Include wp-load.php to access WordPress functions
-require_once(ABSPATH . 'wp-load.php');
+require_once('/home/rhrrist/public_html/wp-load.php');
+
 global $wpdb;
 $wpdb->show_errors();
 

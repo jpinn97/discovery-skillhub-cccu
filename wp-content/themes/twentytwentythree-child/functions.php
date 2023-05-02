@@ -1,5 +1,8 @@
 <?php
 
+require_once('/home/rhrrist/public_html/wp-load.php');
+
+
 add_action('init', 'register_custom_menus');
 
 function register_custom_menus()
