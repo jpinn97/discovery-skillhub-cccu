@@ -558,3 +558,15 @@ function enqueue_additional_resources()
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_additional_resources');
+
+# Enqueue scripts for CV submission page which include validation client side
+function enqueue_cv_submission_scripts()
+{
+    if (is_page('skills-zone')) {
+        wp_enqueue_script('jquery-validate', 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js', array('jquery'), '1.16.0', true);
+        wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js', array('jquery'), '4.1.0', true);
+        wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css', array(), '4.1.0');
+        wp_enqueue_script('cv-submission', get_template_directory_uri() . '/js/cv.js', array('jquery'), '1.0.0', true);
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_cv_submission_scripts');
