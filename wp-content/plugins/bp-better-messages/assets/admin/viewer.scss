@@ -1,0 +1,37 @@
+.bp-messages-list{
+  margin: 15px 0;
+
+  tbody{
+    tr{
+      td{
+        &.user-td{
+          display: flex;
+          align-content: center;
+          justify-content: flex-start;
+          align-items: center;
+
+          > * {
+            margin-right: 5px;
+          }
+        }
+
+        img{
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.selectize-dropdown .selected {
+  background-color: #2271b1;
+}
+
+.pagination{
+  ul{
+    display: flex;
+    li{
+      margin-right: 5px;
+    }
+  }
+}

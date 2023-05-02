@@ -1,0 +1,37 @@
+a:15:{s:22:"subscribe_confirmation";b:1;s:33:"subscribe_checkbox_on_post_editor";b:1;s:33:"subscribe_checkbox_default_status";b:0;s:19:"user_mention_notify";b:1;s:21:"user_following_notify";b:1;s:26:"confirmation_email_subject";s:44:"Please confirm subscription to [entry_title]";s:26:"confirmation_email_message";s:267:"Hello [user_display_name]!<br>
+ Thank you for subscribing.<br>
+ This is an automated response.<br>
+ We are glad to inform you that after confirmation you will get updates from - [entry_title].<br>
+ Please click on link below to complete this step.<br>
+ [confirm_link]";s:36:"new_topic_notification_email_subject";s:9:"New Topic";s:36:"new_topic_notification_email_message";s:289:"Hello [user_display_name]!<br>
+ New topic has been created on your subscribed forum - [forum_link].
+ <br><br>
+ <strong>[topic_title]</strong>
+ <blockquote>
+ [topic_body]
+ </blockquote>
+ <br><hr>
+ If you want to unsubscribe from this forum please use the link below.<br>
+ [unsubscribe_link]";s:35:"new_post_notification_email_subject";s:9:"New Reply";s:35:"new_post_notification_email_message";s:287:"Hello [user_display_name]!<br>
+ New reply has been posted on your subscribed topic - [topic_link].
+ <br><br>
+ <strong>[post_title]</strong>
+ <blockquote >
+ [post_body]
+ </blockquote>
+ <br><hr>
+ If you want to unsubscribe from this topic please use the link below.<br>
+ [unsubscribe_link]";s:26:"user_mention_email_subject";s:37:"You have been mentioned in forum post";s:26:"user_mention_email_message";s:141:"Hi [user_display_name]! <br>
+
+ You have been mentioned in a post on "[topic_title]" by [owner_display_name].<br/><br/>
+
+ Post URL: [post_url]";s:28:"user_following_email_subject";s:34:"New Post from [owner_display_name]";s:28:"user_following_email_message";s:289:"Hello [user_display_name]!<br>
+ New topic or post has been created by [owner_display_name] you are following.
+ <br><br>
+ <strong>[post_title]</strong>
+ <blockquote >
+ [post_body]
+ </blockquote>
+ <br><hr>
+ If you want to unfollow this user please use the link below.<br>
+ [unsubscribe_link]";}

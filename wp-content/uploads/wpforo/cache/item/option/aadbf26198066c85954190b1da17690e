@@ -1,0 +1,26 @@
+a:18:{s:9:"from_name";s:34:"Skill Hub - Discovery Park - Forum";s:10:"from_email";s:39:"admin@jp878.webhosting.canterbury.ac.uk";s:12:"admin_emails";a:1:{i:0;s:39:"admin@jp878.webhosting.canterbury.ac.uk";}s:16:"new_topic_notify";b:1;s:16:"new_reply_notify";b:0;s:35:"disable_new_user_admin_notification";b:1;s:20:"report_email_subject";s:17:"Forum Post Report";s:20:"report_email_message";s:103:"<strong>Report details:</strong>
+ Reporter: [reporter], <br>
+ Message: [message],<br>
+ <br>
+ [post_url]";s:37:"overwrite_new_user_notification_admin";b:1;s:44:"wp_new_user_notification_email_admin_subject";s:32:"[blogname] New User Registration";s:44:"wp_new_user_notification_email_admin_message";s:92:"New user registration on your site [blogname]:
+
+Username: [user_login]
+
+Email: [user_email]
+";s:31:"overwrite_new_user_notification";b:1;s:38:"wp_new_user_notification_email_subject";s:42:"[blogname] Your username and password info";s:38:"wp_new_user_notification_email_message";s:96:"Username: [user_login]
+
+To set your password, visit the following address:
+
+[set_password_url]
+
+";s:30:"overwrite_reset_password_email";b:1;s:28:"reset_password_email_message";s:305:"Hello! 
+
+ You asked us to reset your password for your account using the email address [user_login]. 
+
+ If this was a mistake, or you didn't ask for a password reset, just ignore this email and nothing will happen. 
+
+ To reset your password, visit the following address: 
+
+ [reset_password_url] 
+
+ Thanks!";s:32:"after_user_approve_email_subject";s:43:"[blogname] - Your Account Has been Approved";s:32:"after_user_approve_email_message";s:116:"Hi [user_login] , Thank you for your registration. Your account has been approved. Your can login here: [login_link]";}
