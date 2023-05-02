@@ -536,14 +536,10 @@ function enqueue_additional_resources()
     wp_enqueue_style('themestyles', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/css/style.css?ver=6.2');
     wp_enqueue_style('my-theme-style', get_stylesheet_uri());
 
-    wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?ver=6.2');
-    wp_add_inline_script('jquery', '
-            jQuery(document).ready(function() {
-                // jQuery code here
-            });
-        ');
-    wp_enqueue_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js?ver=6.2');
-    wp_enqueue_script('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js?ver=6.2');
+    wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js');
+
+    wp_enqueue_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js');
+    wp_enqueue_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js');
     wp_enqueue_script('lottie', 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.4/lottie_svg.min.js?ver=6.2');
     wp_enqueue_script('waypoints', 'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js?ver=6.2');
     wp_enqueue_script('aos', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/aos.js?ver=6.2');
@@ -552,21 +548,8 @@ function enqueue_additional_resources()
     wp_enqueue_script('owl_js', 'https://discovery-park.co.uk/wp-content/themes/discoverypark/js/owl.carousel.js?ver=6.2');
     wp_enqueue_script('lax', 'https://cdn.jsdelivr.net/npm/lax.js?ver=6.2');
 
-    // Additional inline script
-    wp_add_inline_script('themefunctions', '
-            jQuery(document).ready(function() {
-                // Custom jQuery code here
-            });
-            ');
-}
-
-add_action('wp_enqueue_scripts', 'enqueue_additional_resources');
-
-# Enqueue scripts for CV submission page which include validation client side
-function enqueue_cv_submission_scripts()
-{
     if (is_page('skills-zone')) {
-        wp_enqueue_script('jquery-validate', 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js', array('jquery'), '1.16.0', true);
+        wp_enqueue_script('jquery-validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array('jquery'), '1.19.5', true);
         wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0');
         wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0', true);
         wp_enqueue_script('cv-validation', get_template_directory_uri() . '/cv-validation.js', array('jquery'), '1.0.0', true);
@@ -577,4 +560,5 @@ function enqueue_cv_submission_scripts()
         ));
     }
 }
-add_action('wp_enqueue_scripts', 'enqueue_cv_submission_scripts');
+
+add_action('wp_enqueue_scripts', 'enqueue_additional_resources');
