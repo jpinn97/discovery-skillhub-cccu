@@ -1,4 +1,4 @@
-$(document).ready(function () {
+jQuery(document).ready(function () {
   $("#cv-post").submit(function (event) {
     event.preventDefault(); // prevent the form from submitting normally
 
