@@ -1,6 +1,6 @@
 {
-  "titles": ["BA", "BSc", "BEng", "BCom", "MA", "MSc", "MEng", "MCom", "PhD"],
-  "subjects": [
+  "degree_title": ["BA", "BSc", "BEng", "BCom", "MA", "MSc", "MEng", "MCom", "PhD"],
+  "subject": [
     "Computer Science",
     "Engineering",
     "Business",

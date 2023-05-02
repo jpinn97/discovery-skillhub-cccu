@@ -1,72 +1,112 @@
 <form action="submit-cv.php" method="post" enctype="multipart/form-data">
-  <label for="title">Title:</label>
-  <select name="title" id="title" style="width: 100%" required>
-    <option value=""></option>
-    <option value="Mr">Mr</option>
-    <option value="Ms">Ms</option>
-    <option value="Mrs">Mrs</option>
-    <option value="Dr">Dr</option>
-    <option value="Prof">Prof</option>
-  </select>
-  <br /><br />
+  <div>
+    <label for="title">Title:</label> <br />
+    <select name="title" id="title" style="width: 100px" required>
+      <option value=""></option>
+      <option value="Mr">Mr</option>
+      <option value="Ms">Ms</option>
+      <option value="Mrs">Mrs</option>
+      <option value="Dr">Dr</option>
+      <option value="Prof">Prof</option>
+    </select>
+  </div>
+  <br />
 
-  <label for="firstname">First Name:</label>
-  <input type="text" name="firstname" id="firstname" required />
-  <br /><br />
+  <div>
+    <label for="firstname">First Name:</label> <br />
+    <input type="text" name="firstname" id="firstname" required />
+  </div>
+  <br />
 
-  <label for="surname">Surname:</label>
-  <input type="text" name="surname" id="surname" required />
-  <br /><br />
+  <div>
+    <label for="surname">Surname:</label> <br />
+    <input type="text" name="surname" id="surname" required />
+  </div>
+  <br />
 
-  <label for="university">University:</label>
-  <select name="university" id="university" style="width: 100%" required>
-    <option value=""></option></select
-  ><br /><br />
-  <label for="title">Degree Title:</label>
-  <select name="title" id="title" style="width: 100%" required>
-    <option value=""></option></select
-  ><br /><br />
+  <div>
+    <label for="university">University:</label>
+    <select name="university" id="university" style="width: 300px" required>
+      <option value=""></option>
+    </select>
+  </div>
+  <br />
 
-  <label for="subject">Degree Subject:</label>
-  <select name="subject" id="subject" style="width: 100%" required>
-    <option value=""></option></select
-  ><br /><br />
+  <div>
+    <label for="degree_title">Degree Title:</label>
+    <select name="degree_title" id="degree_title" style="width: 300px" required>
+      <option value=""></option>
+    </select>
+  </div>
+  <br />
 
-  <label for="date">Date Degree Obtained:</label>
-  <input type="date" name="date" id="date" required /><br /><br />
+  <div>
+    <label for="subject">Degree Subject:</label>
+    <select name="subject" id="subject" style="width: 300px" required>
+      <option value=""></option>
+    </select>
+  </div>
+  <br />
 
-  <label for="email">Email:</label>
-  <input type="email" name="email" id="email" required /><br /><br />
+  <div>
+    <label for="date">Date Degree Obtained:</label> <br />
+    <input type="date" name="date" id="date" required />
+  </div>
+  <br />
 
-  <label for="phone">Phone:</label>
-  <input type="text" name="phone" id="phone" required /><br /><br />
+  <div>
+    <label for="email">Email:</label> <br />
+    <input type="email" name="email" id="email" required />
+  </div>
+  <br />
 
-  <label for="summary">Summary of Skills and Experience:</label>
-  <textarea name="summary" id="summary" rows="5" cols="50" required></textarea
-  ><br /><br />
+  <div>
+    <label for="phone">Phone:</label> <br />
+    <input type="text" name="phone" id="phone" required />
+  </div>
+  <br />
 
-  <label for="cv">Upload your CV:</label>
-  <input
-    type="file"
-    name="cv"
-    id="cv"
-    accept=".pdf,.doc,.docx"
-    required
-  /><br /><br />
+  <div>
+    <label for="summary">Summary of Skills and Experience:</label> <br />
+    <textarea
+      name="summary"
+      id="summary"
+      rows="5"
+      cols="50"
+      required
+    ></textarea>
+  </div>
+  <br />
 
-  <label for="coverletter">Upload your Cover Letter:</label>
-  <input
-    type="file"
-    name="coverletter"
-    id="coverletter"
-    accept=".pdf,.doc,.docx"
-  /><br /><br />
+  <div>
+    <label for="cv">Upload your CV:</label>
+    <input type="file" name="cv" id="cv" accept=".pdf,.doc,.docx" required />
+  </div>
+  <br />
 
-  <label for="linkedin">LinkedIn Profile Link:</label>
-  <input type="url" name="linkedin" id="linkedin" /><br /><br />
+  <div>
+    <label for="coverletter">Upload your Cover Letter:</label>
+    <input
+      type="file"
+      name="coverletter"
+      id="coverletter"
+      accept=".pdf,.doc,.docx"
+    />
+  </div>
+  <br />
 
-  <label for="website">Website Link:</label>
-  <input type="url" name="website" id="website" /><br /><br />
+  <div>
+    <label for="linkedin">LinkedIn Profile Link:</label> <br />
+    <input type="url" name="linkedin" id="linkedin" />
+  </div>
+  <br />
 
-  <input type="submit" value="Submit" />
+  <div>
+    <label for="website">Website Link:</label> <br />
+    <input type="url" name="website" id="website" />
+  </div>
+  <br />
+  <div class="bright-blue-button">
+    <input type="submit" value="Submit" /><i class="fas fa-angle-right"></i>
+  </div>
 </form>
