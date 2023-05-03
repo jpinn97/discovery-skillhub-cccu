@@ -569,8 +569,6 @@ add_action('wp_ajax_nopriv_handle_cv_form_submission', 'handle_cv_form_submissio
 
 function handle_cv_form_submission()
 {
-    // You should perform nonce verification and sanitize user inputs here
-
     global $wpdb;
 
     // Get form data
@@ -635,7 +633,5 @@ function handle_cv_form_submission()
     } else {
         wp_send_json_error('Error submitting form data!');
     }
-
-    // You should die() at the end of your AJAX function
     die();
 }
