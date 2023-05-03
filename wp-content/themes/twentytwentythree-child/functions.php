@@ -523,6 +523,8 @@ function um_custom_validate_postcode($args)
     }
 }
 
+add_action('wp_enqueue_scripts', 'enqueue_additional_resources');
+
 function enqueue_additional_resources()
 {
     wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css?ver=6.2');
@@ -550,6 +552,7 @@ function enqueue_additional_resources()
 
     if (is_page('skills-zone')) {
         wp_enqueue_script('jquery-validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array('jquery'), '1.19.5', true);
+        wp_enqueue_script('jquery-validate-additionals', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js', array('jquery'), '1.19.5', true);
         wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0');
         wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0', true);
         wp_enqueue_script('cv-validation', get_template_directory_uri() . '/cv-validation.js', array('jquery'), '1.0.0', true);
@@ -561,4 +564,78 @@ function enqueue_additional_resources()
     }
 }
 
-add_action('wp_enqueue_scripts', 'enqueue_additional_resources');
+add_action('wp_ajax_handle_cv_form_submission', 'handle_cv_form_submission');
+add_action('wp_ajax_nopriv_handle_cv_form_submission', 'handle_cv_form_submission');
+
+function handle_cv_form_submission()
+{
+    // You should perform nonce verification and sanitize user inputs here
+
+    global $wpdb;
+
+    // Get form data
+    $user_id = get_current_user_id();
+    $title = $_POST['title'];
+    $firstname = $_POST['firstname'];
+    $surname = $_POST['surname'];
+    $university = $_POST['university'];
+    $degree_title = $_POST['degree_title'];
+    $subject = $_POST['subject'];
+    $date_obtained = $_POST['date'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $summary = $_POST['summary'];
+    $linkedin = $_POST['linkedin'];
+    $website = $_POST['website'];
+    $cv_filename = $_FILES['cv']['name'];
+    $cv_tmpname = $_FILES['cv']['tmp_name'];
+    $coverletter_filename = $_FILES['coverletter']['name'];
+    $coverletter_tmpname = $_FILES['coverletter']['tmp_name'];
+
+    // Build the form data object
+
+    $form_data = array(
+        'user_id' => $user_id,
+        'title' => $title,
+        'firstname' => $firstname,
+        'surname' => $surname,
+        'university' => $university,
+        'degree_title' => $degree_title,
+        'subject' => $subject,
+        'date_obtained' => $date_obtained,
+        'email' => $email,
+        'phone' => $phone,
+        'summary' => $summary,
+        'cv_filename' => $cv_filename,
+        'coverletter_filename' => $coverletter_filename,
+        'linkedin' => $linkedin,
+        'website' => $website,
+    );
+
+    // Check if a row with the given user_id already exists
+    $existing_row = $wpdb->get_row("SELECT * FROM cv_info WHERE user_id = $user_id");
+
+    if ($existing_row) {
+        // Update the existing row
+        $result = $wpdb->update("cv_info", $form_data, array('user_id' => $user_id));
+    } else {
+        // Insert a new row with the user_id
+        $form_data['user_id'] = $form_data['user_id'] = $user_id;
+        $result = $wpdb->insert("cv_info", $form_data);
+    }
+
+
+    // move uploaded files to server directory
+    $uploads_dir = WP_CONTENT_DIR . '/uploads/cv-form/';
+    move_uploaded_file($cv_tmpname, $uploads_dir . $cv_filename);
+    move_uploaded_file($coverletter_tmpname, $uploads_dir . $coverletter_filename);
+
+    if ($result) {
+        wp_send_json_success('Form data submitted successfully!');
+    } else {
+        wp_send_json_error('Error submitting form data!');
+    }
+
+    // You should die() at the end of your AJAX function
+    die();
+}

@@ -80,7 +80,7 @@ jQuery(document).ready(function ($) {
   );
 
   // Add form validation rules
-  $("form").validate({
+  $("#cv-post").validate({
     rules: {
       email: {
         required: true,
@@ -92,11 +92,13 @@ jQuery(document).ready(function ($) {
       },
       cv: {
         required: true,
-        accept: "pdf|doc|docx",
+        accept:
+          "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         filesize: 10, // Maximum file size in MB
       },
       coverletter: {
-        accept: "pdf|doc|docx",
+        accept:
+          "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         filesize: 10, // Maximum file size in MB
       },
     },
